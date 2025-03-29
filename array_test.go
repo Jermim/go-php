@@ -79,6 +79,16 @@ func TestPhpArray_fill(t *testing.T) {
 	fmt.Printf("%+v : %d\n", arr, len(arr))
 }
 
+func TestPhpArray_pop(t *testing.T) {
+
+	val := Array_Pop(&[]int{1, 2, 3, 4, 5})
+
+	if expected := 5; expected != val {
+		t.Logf("expected '%d' got '%d'", expected, val)
+		t.FailNow()
+	}
+}
+
 func TestPhpArray_map(t *testing.T) {
 
 	numbers := []int{1, 2, 3, 4, 5}

@@ -1,5 +1,10 @@
 package main
 
+func return_zero[T any]() T {
+	var zero T
+	return zero
+}
+
 func Array_all[U any](arr []U, fn func(item U, index int) bool) bool {
 
 	for i, item := range arr {
@@ -9,6 +14,36 @@ func Array_all[U any](arr []U, fn func(item U, index int) bool) bool {
 	}
 
 	return true
+}
+
+func Array_Pop[T any](arr *[]T) T {
+	length := len(*arr)
+
+	if length == 0 {
+		return return_zero[T]()
+	}
+
+	v := (*arr)[length-1]
+	*arr = (*arr)[:length-2]
+
+	return v
+}
+
+func Array_shift[T any](arr *[]T) T {
+	length := len(*arr)
+
+	if length == 0 {
+		return return_zero[T]()
+	}
+
+	v := (*arr)[0]
+	*arr = (*arr)[1:]
+
+	return v
+}
+
+func Array_Push[T any](arr *[]T, elements ...T) {
+	(*arr) = append((*arr), elements...)
 }
 
 func Array_any[U any](arr []U, fn func(item U, index int) bool) bool {
@@ -65,8 +100,18 @@ func Array_find[T any](arr []T, fn func(T) bool) T {
 		}
 	}
 
-	var zero T
-	return zero
+	return return_zero[T]()
+}
+
+func Array_flip[T any](arr []T) []T {
+
+	result := make([]T, len(arr))
+
+	for i := len(arr); i > 0; i-- {
+		result[i] = arr[i]
+	}
+
+	return result
 }
 
 func Array_map[U, T any](arr []U, fn func(item U) T) []T {
