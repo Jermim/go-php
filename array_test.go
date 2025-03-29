@@ -72,6 +72,13 @@ func TestPhpArray_chunk(t *testing.T) {
 	fmt.Printf("%+v\n", result)
 }
 
+func TestPhpArray_fill(t *testing.T) {
+
+	arr := Array_fill(3, 3, "hello")
+
+	fmt.Printf("%+v : %d\n", arr, len(arr))
+}
+
 func TestPhpArray_map(t *testing.T) {
 
 	numbers := []int{1, 2, 3, 4, 5}

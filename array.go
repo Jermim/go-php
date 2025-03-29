@@ -35,6 +35,40 @@ func Array_chunk[T any](arr []T, length int) [][]T {
 	return result
 }
 
+func Array_fill[T any](start_index, count int, value T) []T {
+
+	result := make([]T, count+start_index)
+
+	for i := start_index; i < len(result); i++ {
+		result[i] = value
+	}
+
+	return result
+}
+
+func Array_filter[T any](arr []T, fn func(T) bool) []T {
+	var result []T
+
+	for _, v := range arr {
+		if fn(v) {
+			result = append(result, v)
+		}
+	}
+
+	return result
+}
+
+func Array_find[T any](arr []T, fn func(T) bool) T {
+	for _, v := range arr {
+		if fn(v) {
+			return v
+		}
+	}
+
+	var zero T
+	return zero
+}
+
 func Array_map[U, T any](arr []U, fn func(item U) T) []T {
 
 	elems := make([]T, len(arr))
