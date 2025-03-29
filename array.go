@@ -1,5 +1,7 @@
 package main
 
+import "cmp"
+
 func return_zero[T any]() T {
 	var zero T
 	return zero
@@ -112,6 +114,16 @@ func Array_flip[T any](arr []T) []T {
 	}
 
 	return result
+}
+
+func Array_search[T cmp.Ordered](arr []T, search T) int {
+	for i, item := range arr {
+		if item == search {
+			return i
+		}
+	}
+
+	return -1
 }
 
 func Array_map[U, T any](arr []U, fn func(item U) T) []T {
